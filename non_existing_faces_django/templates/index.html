@@ -1,10 +1,19 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Random face generator</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous" defer></script>
+    <script src="{% static 'js/script.js' %}" defer></script>
 </head>
 <body>
-$END$
+    <form id="generateForm" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Generate image</button>
+    </form>
 </body>
 </html>
