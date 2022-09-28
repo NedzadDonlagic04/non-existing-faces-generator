@@ -7,7 +7,7 @@ $("#generateForm").submit(function(e) {
         url:'/',
         data:form.serialize(),
         success: function(data) {
-            console.log(data);
+            console.log(data); // This is temporary
         }
     });
 });
