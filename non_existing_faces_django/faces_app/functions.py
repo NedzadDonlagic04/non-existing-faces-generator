@@ -25,15 +25,20 @@ EFFECT_FUNCTIONS = { # using this like switch case
     "grayscale":_to_grayscale
 }
 
-def get_random_face(effects=False):
-    face = engine.get_random_face()
+def _to_base64(face):
+    retval, buffer = cv2.imencode(".jpg", face)
+    b64_string = "data:image/jpeg;base64," + base64.b64encode(buffer).decode()
+
+    return b64_string
+
+def get_random_faces(effects=False):
+    face1 = engine.get_random_face()
+    face2 = engine.get_random_face()
 
     if effects:
         effect = random.choice(EFFECTS)
         func = EFFECT_FUNCTIONS[effect]
-        face = func(face)
+        face1 = func(face1)
+        face2 = func(face2)
 
-    retval,buffer = cv2.imencode(".jpg",face)
-    b64_string = "data:image/jpeg;base64," + base64.b64encode(buffer).decode()
-
-    return b64_string
+    return _to_base64(face1),_to_base64(face2)

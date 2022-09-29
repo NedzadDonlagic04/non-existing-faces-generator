@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.shortcuts import render
 from . import functions
 from . import forms
@@ -16,8 +16,8 @@ def index(request):
             return HttpResponse("Invalid form data!",status=422)
 
         effects = form.cleaned_data.get("effects")
-        image = functions.get_random_face(effects)
+        images = functions.get_random_faces(effects)
 
-        return HttpResponse(image)
+        return JsonResponse(images,safe=False)
 
     return HttpResponse("Invalid request method!",status=400)
