@@ -10,10 +10,27 @@
     <script src="{% static 'js/script.js' %}" defer></script>
 </head>
 <body>
+
+    <div class="content">
+        <div class="card-content">
+            <div class="card">
+                <div class="front-side">
+                    <img id="img1" src="" alt="picture_1">
+                </div>
+            <div class="back-side">
+                    <img id="img2" src="" alt="picture_2">
+            </div>
+          </div>
+        </div>
+      
+        <button>Click me!</button>
+    </div>
+    
     <form id="generateForm" method="post">
         {% csrf_token %}
         {{ form }}
         <button type="submit">Generate image</button>
     </form>
+    <canvas id="bg"></canvas>
 </body>
 </html>
