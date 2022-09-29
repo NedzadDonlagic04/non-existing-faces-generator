@@ -22,14 +22,12 @@
             </div>
           </div>
         </div>
-      
-        <button>Click me!</button>
     </div>
     
     <form id="generateForm" method="post">
         {% csrf_token %}
         {{ form }}
-        <button type="submit">Generate image</button>
+        <button id="clickMe" type="submit">Generate image</button>
     </form>
     <canvas id="bg"></canvas>
 </body>

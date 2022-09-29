@@ -15,7 +15,7 @@ $("#generateForm").submit(function(e) {
 /* Flip Animation Related Stuff */
 
 const card = document.querySelector('.card');
-const button = document.querySelector('button');
+const button = document.querySelector('#clickMe');
 
 const img1 = document.querySelector('#img1');
 const img2 = document.querySelector('#img2');
@@ -33,7 +33,6 @@ getImg(img2);
 
 button.addEventListener('click', () => {
     button.disabled = true;
-  
   
     if(card.classList.contains('flipOnce'))
     {
