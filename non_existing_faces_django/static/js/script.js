@@ -31,26 +31,31 @@ const getImg = async img => {
 getImg(img1);
 getImg(img2);
 
+let btnStatus;
+
 button.addEventListener('click', () => {
-    button.disabled = true;
-  
-    if(card.classList.contains('flipOnce'))
+    if(!btnStatus)
     {
-        card.classList.remove('flipOnce');
-        card.classList.add('flipTwice');
-    }
-    else if(!card.classList.contains('flipOnce'))
-    {
-        if(card.classList.contains('reset'))
+        if(card.classList.contains('flipOnce'))
         {
-            card.classList.remove('reset');
+            card.classList.remove('flipOnce');
+            card.classList.add('flipTwice');
         }
-        card.classList.add('flipOnce');
+        else if(!card.classList.contains('flipOnce'))
+        {
+            if(card.classList.contains('reset'))
+            {
+                card.classList.remove('reset');
+            }
+            card.classList.add('flipOnce');
+        }
+
+        btnStatus = true;
     }
 });
 
 card.addEventListener('transitionend', () => {
-    button.disabled = false;
+    btnStatus = false;
   
     if(card.classList.contains('flipTwice'))
     {
