@@ -1,56 +1,51 @@
-$("#generateForm").submit(function(e) {
-    e.preventDefault();
-    var form = $(this);
-
-    $.ajax({
-        type:'POST',
-        url:'/',
-        data:form.serialize(),
-        success: function(data) {
-            console.log(data); // This is temporary
-        }
-    });
-});
-
 /* Flip Animation Related Stuff */
+const img1 = document.querySelector('#img1');
+const img2 = document.querySelector('#img2');
+
+let img = img1;
+
+const setImg = (img, src) => {
+    img.setAttribute('src', src);
+}
 
 const card = document.querySelector('.card');
 const button = document.querySelector('#clickMe');
 
-const img1 = document.querySelector('#img1');
-const img2 = document.querySelector('#img2');
+let btnStatus = false;
 
-const getImg = async img => {
-    await fetch('https://dog.ceo/api/breeds/image/random')
-        .then(response => response.json())
-        .then(data => {
-            img.setAttribute('src', data.message);
-        });
-}
+/* Ajax Related Stuff */
+$("#generateForm").submit(function(e) {
+    e.preventDefault();
+    var form = $(this);
 
-getImg(img1);
-getImg(img2);
-
-let btnStatus;
-
-button.addEventListener('click', () => {
     if(!btnStatus)
     {
-        if(card.classList.contains('flipOnce'))
-        {
-            card.classList.remove('flipOnce');
-            card.classList.add('flipTwice');
-        }
-        else if(!card.classList.contains('flipOnce'))
-        {
-            if(card.classList.contains('reset'))
-            {
-                card.classList.remove('reset');
-            }
-            card.classList.add('flipOnce');
-        }
-
+        img = (img === img1) ? img2 : img1;
+        
         btnStatus = true;
+
+        $.ajax({
+            type:'POST',
+            url:'/',
+            data:form.serialize(),
+            success: function(data) {
+                setImg(img, data);
+                
+                if(card.classList.contains('flipOnce'))
+                {
+                    card.classList.remove('flipOnce');
+                    card.classList.add('flipTwice');
+                }
+                else if(!card.classList.contains('flipOnce'))
+                {
+                    if(card.classList.contains('reset'))
+                    {
+                        card.classList.remove('reset');
+                    }
+                    card.classList.add('flipOnce');
+                }
+            }
+        });
     }
 });
 
@@ -59,12 +54,7 @@ card.addEventListener('transitionend', () => {
   
     if(card.classList.contains('flipTwice'))
     {
-        getImg(img2);
         card.classList.remove('flipTwice');
         card.classList.add('reset');
-    }
-    else if(card.classList.contains('flipOnce'))
-    {
-        getImg(img1);
     }
 });
