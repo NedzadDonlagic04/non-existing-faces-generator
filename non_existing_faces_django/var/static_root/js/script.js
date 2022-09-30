@@ -21,6 +21,8 @@ $("#generateForm").submit(function(e) {
     if(!btnStatus)
     {
         img = (img === img1) ? img2 : img1;
+        
+        btnStatus = true;
 
         $.ajax({
             type:'POST',
@@ -42,8 +44,6 @@ $("#generateForm").submit(function(e) {
                     }
                     card.classList.add('flipOnce');
                 }
-        
-                btnStatus = true;
             }
         });
     }
