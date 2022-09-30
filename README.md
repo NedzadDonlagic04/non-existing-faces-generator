@@ -8,3 +8,5 @@ Front-end - YourFBIAgent
 
 Libraries used in this project:
 - https://pypi.org/project/random-face/
+- https://pypi.org/project/opencv-python/
+- https://pypi.org/project/numpy/
