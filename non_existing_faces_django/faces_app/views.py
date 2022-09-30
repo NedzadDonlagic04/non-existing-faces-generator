@@ -6,8 +6,9 @@ from . import forms
 def index(request):
     if request.method == "GET":
         form = forms.GeneratorForm()
+        images = functions.get_random_faces()
 
-        return render(request,"index.html",{"form":form})
+        return render(request,"index.html",{"form":form,"images":images})
 
     elif request.method == "POST":
         form = forms.GeneratorForm(request.POST)
