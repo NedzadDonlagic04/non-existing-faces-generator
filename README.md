@@ -3,7 +3,7 @@
 In this project we made a web page which generates
 non existing faces with some animation.
 
-Back-end - AdianKozlica
+Back-end - AdianKozlica <br />
 Front-end - YourFBIAgent
 
 Libraries used in this project:
