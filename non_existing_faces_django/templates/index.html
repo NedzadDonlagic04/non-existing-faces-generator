@@ -26,7 +26,9 @@
     
     <form id="generateForm" method="post">
         {% csrf_token %}
-        {{ form }}
+        <div class="effect-box">
+            {{ form }}
+        </div>
         <button id="clickMe" type="submit">Generate image</button>
     </form>
     <canvas id="bg"></canvas>
